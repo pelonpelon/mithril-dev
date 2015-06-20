@@ -1,0 +1,33 @@
+{
+  "name": "mithril-interactive-tutorial",
+  "version": "0.0.1",
+  "description": "Step-by-step lessons on using the Mithril MVC framework",
+  "main": "app.js",
+  "scripts": {
+    "clean": "rm -rf build/*",
+    "make-directories": "mkdir -p build/styles src/assets src/styles build/vendor",
+    "copy-assets": "cp -Rf src/assets build/",
+    "copy-styles": "cp -Rf node_modules/bootstrap/dist/css/bootstrap.min.css build/styles/",
+    "copy-vendor": "cp -Rf node_modules/mithril/mithril.js  build/vendor/mithril.js && cp -Rf ./node_modules/lodash/index.js  build/vendor/lodash.js",
+    "copy-html": "cp -Rf src/*.html build/",
+    "prep": "npm run clean && npm run make-directories && npm run copy-html && npm run copy-assets && npm run copy-vendor && npm run copy-styles",
+    "browser-sync": "cd ./build && browser-sync start --config=../bs-config.js",
+    "watch-stylus": "stylus -w src/styles -o build/styles",
+    "watch-js": "watchify --verbose -t stringify -t coffeeify src/app.coffee -o build/bundle.js",
+    "watch-babel": "babel src/ --out-dir=build/ --watch",
+    "watch": "npm run watch-stylus & npm run watch-js & npm run watch-babel & npm run browser-sync"
+  },
+  "devDependencies": {
+    "browserify": "",
+    "coffeeify": "",
+    "stylus": "",
+    "watchify": "",
+    "mithril": "~0.2.0",
+    "stringify": "~3.1.0",
+    "factor-bundle": "~2.3.3",
+    "browser-sync": "~2.7.1",
+    "bootstrap": "~3.3.4"
+  },
+  "author": "pelonpelon",
+  "license": "MIT"
+}
