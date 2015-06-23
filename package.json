@@ -1,7 +1,7 @@
 {
-  "name": "mithril-interactive-tutorial",
+  "name": "mithril-play",
   "version": "0.0.1",
-  "description": "Step-by-step lessons on using the Mithril MVC framework",
+  "description": "Mithril Playground",
   "main": "app.js",
   "scripts": {
     "clean": "rm -rf build/*",
@@ -11,11 +11,14 @@
     "copy-vendor": "cp -Rf node_modules/mithril/mithril.js  build/vendor/mithril.js && cp -Rf ./node_modules/lodash/index.js  build/vendor/lodash.js",
     "copy-html": "cp -Rf src/*.html build/",
     "prep": "npm run clean && npm run make-directories && npm run copy-html && npm run copy-assets && npm run copy-vendor && npm run copy-styles",
-    "browser-sync": "cd ./build && browser-sync start --config=../bs-config.js",
+    "watch-html": "onchange 'src/*.html' -- npm run copy-html",
+    "watch-assets": "onchange 'src/assets/*' -- npm run copy-assets",
     "watch-stylus": "stylus -w src/styles -o build/styles",
+    "watch-jade": "jade -P -H -w src -o build",
     "watch-js": "watchify --verbose -t stringify -t coffeeify src/app.coffee -o build/bundle.js",
     "watch-babel": "babel src/ --out-dir=build/ --watch",
-    "watch": "npm run watch-stylus & npm run watch-js & npm run watch-babel & npm run browser-sync"
+    "browser-sync": "cd ./build && browser-sync start --config=../bs-config.js",
+    "dev": "npm run watch-jade & npm run watch-html & npm run watch-assets & npm run watch-stylus & npm run watch-js & npm run watch-babel & npm run browser-sync"
   },
   "devDependencies": {
     "browserify": "",
@@ -31,7 +34,8 @@
     "babel": "~5.6.3",
     "fastclick": "~1.0.6",
     "lodash": "~3.9.3",
-    "msx": "~0.4.1"
+    "msx": "~0.4.1",
+    "onchange": "~1.1.0"
   },
   "author": "pelonpelon",
   "license": "MIT"

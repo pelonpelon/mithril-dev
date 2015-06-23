@@ -9,7 +9,7 @@ myComp =
 
   view: ->
     log "view"
-    m "div", "helo"
+    m "div", "hello"
 
 App = view: ->
   [myComp]
