@@ -5,7 +5,7 @@
   "main": "app.js",
   "scripts": {
     "css-prefixer": "postcss -u autoprefixer -o src/tmp/main-prefixed.css src/main.css && npm run inline-index",
-    "rsync": "rsync --recursive --verbose build/ sfeagleftp@sf-eagle.com:/var/chroot/home/content/20/9803620/html/abc/",
+    "rsync": "rsync --recursive --verbose build/ username@url:/path to root of app/",
     "clean": "rm -rf build/*",
     "make-directories": "mkdir -p src/assets src/pages src/vendor build/pages",
     "copy-assets": "cp -RLf src/assets build/",
